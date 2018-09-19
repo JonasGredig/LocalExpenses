@@ -1,4 +1,4 @@
-package ch.jonasgredig.localexpenses.View;
+package ch.jonasgredig.localexpenses.view;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +17,7 @@ public class MainFrame extends JFrame {
         JTextField textField = new JTextField();
         add(textField);
 
+        setBackground(Color.blue);
 
         setVisible(true);
     }
