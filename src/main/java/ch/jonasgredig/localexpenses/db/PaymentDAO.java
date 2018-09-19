@@ -20,7 +20,7 @@ public class PaymentDAO {
             statement.executeQuery("");
         return null;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
