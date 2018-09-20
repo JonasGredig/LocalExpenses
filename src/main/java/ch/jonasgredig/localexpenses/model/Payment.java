@@ -5,6 +5,27 @@ import java.util.Date;
 
 public class Payment {
 
+    public Payment(int id, int userid, float amount, Date date, String category, String opponent, ArrayList<String> tags, boolean isDeleted) {
+        this.id = id;
+        this.userid = userid;
+        this.amount = amount;
+        this.date = date;
+        this.category = category;
+        this.opponent = opponent;
+        this.tags = tags;
+        this.isDeleted = isDeleted;
+    }
+
+    public Payment(int userid, float amount, Date date, String category, String opponent, ArrayList<String> tags, boolean isDeleted) {
+        this.userid = userid;
+        this.amount = amount;
+        this.date = date;
+        this.category = category;
+        this.opponent = opponent;
+        this.tags = tags;
+        this.isDeleted = isDeleted;
+    }
+
     private int id;
     private int userid;
     private float amount;
@@ -12,6 +33,7 @@ public class Payment {
     private String category;
     private String opponent;
     private ArrayList<String> tags;
+
     private boolean isDeleted;
 
     public int getId() {

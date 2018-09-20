@@ -1,11 +1,18 @@
 package ch.jonasgredig.localexpenses.view;
 
+import ch.jonasgredig.localexpenses.controller.PaymentController;
+import ch.jonasgredig.localexpenses.model.Payment;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class TerminalGUI {
 
     BufferedReader reader;
+    PaymentController PaymentController;
+
+    int menuSize = 134;
 
     public TerminalGUI() {
         reader = new BufferedReader(new InputStreamReader(System.in));
@@ -14,11 +21,12 @@ public class TerminalGUI {
             printStartmenu();
             printInputLine();
             try {
-                String name = reader.readLine();
+                String input = reader.readLine();
                 printClear();
-                switch (name.toLowerCase().charAt(0)) {
+                switch (input.toLowerCase().charAt(0)) {
                     case 'a':
-                        //TODO
+                        printAllPaymentsMenu();
+                        reader.readLine();
                         break;
                     case 't':
                         //TODO
@@ -32,23 +40,14 @@ public class TerminalGUI {
                     default:
                         printInfo("Fehler! Unbekannte Eingabe!");
                 }
+                printClear();
             } catch (Exception e) {
-                System.out.println("ERROR");
+                e.printStackTrace();
             }
         }
     }
 
-    private void printClear() {
-        for (int i = 0; i <= 10; i++) {
-            System.out.println("");
-        }
-    }
-
-    private void printInfo(String s) {
-        printSpacerLine();
-        printMenuText(s);
-        printSpacerLine();
-    }
+    // MENUS
 
     private void printStartmenu() {
         printInfo("Willkommen in Expenses!");
@@ -59,9 +58,69 @@ public class TerminalGUI {
         printSpacerLine();
     }
 
+    private void printAllPaymentsMenu() {
+        PaymentController = new PaymentController();
+
+        String seperator = " | ";
+        String idTitle = setStringLength("ID",6);
+        String userIdTitle = setStringLength("UserID", 6);
+        String dateTitle = setStringLength("Datum", 12);
+        String amountTitle = setStringLength("Betrag", 15);
+        String categoryTitle = setStringLength("Kategorie", 15);
+        String opponentTitle = setStringLength("Zahlung an", 15);
+        String tagsTitle = setStringLength("Tags", 44);
+
+        printInfo("Meine Payments");
+
+
+        System.out.println("* " + idTitle + seperator + userIdTitle + seperator + dateTitle + seperator + amountTitle + seperator + categoryTitle + seperator + opponentTitle + seperator + tagsTitle + " *");
+        printSpacerLine();
+        for (Payment payment : PaymentController.getAllPayments()) {
+            String tags = "";
+            if (payment.getTags() != null) {
+                for (String tag : payment.getTags()) {
+                    tags = tags + ", ";
+                }
+            }
+
+            String id = setStringLength(payment.getId() + "", 6);
+            String userId = setStringLength(payment.getUserid() + "", 6);
+            String date = setStringLength(payment.getDate().toString(), 12);
+            String amount = setStringLength(payment.getAmount() + "", 15);
+            String category = setStringLength(payment.getCategory(), 15);
+            String opponent = setStringLength(payment.getOpponent(), 15);
+            tags = setStringLength(tags, 44);
+
+
+            System.out.println("* " + id + seperator + userId + seperator + date + seperator + amount + seperator + category + seperator + opponent + seperator + tags + " *");
+        }
+        printInfo("Drücke eine Taste um wieder ins Hauptmenu zu gelangen!");
+    }
+
+
+    // UTLILITIES TODO -> REFACTOR IN UTILITY
+
+
+    private String setStringLength(String s, int length) {
+        while (s.length() < length) {
+            s = " " + s;
+        }
+        if (s.length() > length) {
+            s = s.substring(0,length);
+        }
+        return s;
+    }
+
+
+    private void printInfo(String s) {
+        printSpacerLine();
+        printMenuText(s);
+        printSpacerLine();
+    }
+
     private void printMenuText(String text) {
-        while (text.length() < 37) {
-            if (text.length() == 36) {
+        while (text.length() < menuSize - 1) {
+            if (text.length() == (menuSize - 2)) {
                 text = text + " ";
             } else {
                 text = " " + text + " ";
@@ -73,10 +132,22 @@ public class TerminalGUI {
     }
 
     private void printSpacerLine() {
-        System.out.println("* * * * * * * * * * * * * * * * * * * *");
+        String spacer = "";
+        int size = (menuSize / 2) - 1;
+        for (int i = 0; i <= size; i++) {
+            spacer = spacer + "* ";
+        }
+        spacer = spacer + "*";
+        System.out.println(spacer);
     }
 
     private void printInputLine() {
         System.out.print(">>>");
+    }
+
+    private void printClear() {
+        for (int i = 0; i <= 25; i++) {
+            System.out.println("");
+        }
     }
 }
