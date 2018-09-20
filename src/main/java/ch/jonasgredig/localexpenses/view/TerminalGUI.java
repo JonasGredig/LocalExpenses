@@ -29,7 +29,7 @@ public class TerminalGUI {
                         reader.readLine();
                         break;
                     case 't':
-                        //TODO
+                        //printAllTagsMenu();
                         break;
                     case 's':
                         //TODO
