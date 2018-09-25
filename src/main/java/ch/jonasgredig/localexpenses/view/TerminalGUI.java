@@ -72,7 +72,6 @@ public class TerminalGUI {
 
         printInfo("Meine Payments");
 
-
         System.out.println("* " + idTitle + seperator + userIdTitle + seperator + dateTitle + seperator + amountTitle + seperator + categoryTitle + seperator + opponentTitle + seperator + tagsTitle + " *");
         printSpacerLine();
         for (Payment payment : PaymentController.getAllPayments()) {
@@ -91,14 +90,15 @@ public class TerminalGUI {
             String opponent = setStringLength(payment.getOpponent(), 15);
             tags = setStringLength(tags, 44);
 
-
             System.out.println("* " + id + seperator + userId + seperator + date + seperator + amount + seperator + category + seperator + opponent + seperator + tags + " *");
         }
         printInfo("Drücke eine Taste um wieder ins Hauptmenu zu gelangen!");
     }
 
 
-    // UTLILITIES TODO -> REFACTOR IN UTILITY
+
+
+    // UTILS TODO -> REFACTOR IN UTILITY
 
 
     private String setStringLength(String s, int length) {
