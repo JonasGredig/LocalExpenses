@@ -27,6 +27,7 @@ public class DBConnection {
             connectionProps.put("password", prop.getProperty("dbpassword"));
 
             conn = DriverManager.getConnection("jdbc:" + prop.getProperty("db") + "://" + prop.getProperty("host") + ":" + prop.getProperty("dbport") + "/", connectionProps);
+            System.out.println("Connected");
             return conn;
         } catch (Exception e) {
             throw new RuntimeException(e);

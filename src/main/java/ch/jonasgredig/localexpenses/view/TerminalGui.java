@@ -51,7 +51,6 @@ public class TerminalGui {
         }
     }
 
-    // MENUS
 
     private void printStartmenu() {
         terminalGuiUtils.printInfo("Willkommen in Expenses!");

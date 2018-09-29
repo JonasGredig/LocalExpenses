@@ -1,6 +1,7 @@
 package ch.jonasgredig.localexpenses.db;
 
 import ch.jonasgredig.localexpenses.model.Payment;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ public class PaymentDAO {
         try {
             statement = conn.createStatement();
             statement.executeQuery("");
-        return null;
+            throw new NotImplementedException();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
