@@ -1,0 +1,11 @@
+*.iml
+.project
+.classpath
+.settings
+.idea/
+.gradle/
+build/
+out/
+*.exe
+*.msi
+*.dmg
