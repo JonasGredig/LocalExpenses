@@ -1,0 +1,22 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+group = 'ch.jonasgredig.localexpenses'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 8
+
+repositories {
+    mavenCentral()
+}
+
+test {
+}
+
+dependencies {
+}

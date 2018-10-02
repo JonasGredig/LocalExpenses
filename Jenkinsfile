@@ -1,21 +1,22 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'openjdk:8'
+            args '-v $HOME/.gradle:/root/.gradle'
+        }
+    }
 
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh './gradlew clean test'
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+    }
+
+    post {
+        always {
+            junit 'build/test-results/**/.xml'
         }
     }
 }
