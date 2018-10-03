@@ -1,16 +1,21 @@
 package ch.jonasgredig.localexpenses.view;
 
+import ch.jonasgredig.localexpenses.controller.IPaymentController;
 import ch.jonasgredig.localexpenses.controller.PaymentController;
+import ch.jonasgredig.localexpenses.controller.mockController.MockPaymentController;
 import ch.jonasgredig.localexpenses.model.Payment;
 import ch.jonasgredig.localexpenses.util.TerminalGuiUtils;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TerminalGui {
 
     BufferedReader reader;
-    PaymentController PaymentController;
+    IPaymentController paymentController;
     TerminalGuiUtils terminalGuiUtils;
 
 
@@ -62,7 +67,7 @@ public class TerminalGui {
     }
 
     private void printAllPaymentsMenu() {
-        PaymentController = new PaymentController();
+        paymentController = new MockPaymentController();
 
         String seperator = " | ";
         String idTitle = terminalGuiUtils.setStringLength("ID",6);
@@ -77,7 +82,7 @@ public class TerminalGui {
 
         System.out.println("* " + idTitle + seperator + userIdTitle + seperator + dateTitle + seperator + amountTitle + seperator + categoryTitle + seperator + opponentTitle + seperator + tagsTitle + " *");
         terminalGuiUtils.printSpacerLine();
-        for (Payment payment : PaymentController.getAllPayments()) {
+        for (Payment payment : paymentController.getPayments(1)) {
             String tags = "";
             if (payment.getTags() != null) {
                 for (String tag : payment.getTags()) {
@@ -94,7 +99,12 @@ public class TerminalGui {
             tags = terminalGuiUtils.setStringLength(tags, 44);
 
             System.out.println("* " + id + seperator + userId + seperator + date + seperator + amount + seperator + category + seperator + opponent + seperator + tags + " *");
+
         }
-        terminalGuiUtils.printInfo("Drücke eine Taste um wieder ins Hauptmenu zu gelangen!");
+        String[] messages = {"Tippe eine Zahl ein um zu Blättern. Seiten: 1 - " + paymentController.getAmountPaymets(), "Drücke \'X\' um wieder ins Hauptmenu zu gelangen!"};
+        terminalGuiUtils.printInfo(messages);
+        terminalGuiUtils.printInputLine();
+
+
     }
 }

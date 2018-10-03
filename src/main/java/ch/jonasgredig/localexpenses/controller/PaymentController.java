@@ -5,11 +5,21 @@ import ch.jonasgredig.localexpenses.model.Payment;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class PaymentController {
-    public ArrayList<Payment> getAllPayments() {
-        ArrayList<Payment> payments = new ArrayList<Payment>();
-        payments.add(new Payment(1,1, 5.0f, new Date(), "EINKAUF", "COOP", null, false));
-        payments.add(new Payment(2, 1, 18.5f, new Date(), "EINKAUF", "MIGROS", null, false));
-        return payments;
+public class PaymentController implements IPaymentController {
+
+    /**
+     * Get 10 Payments
+     *
+     * @param pagination INTEGER
+     */
+    public ArrayList<Payment> getPayments(int pagination) {
+
+
+        return new ArrayList<>();
+    }
+
+    @Override
+    public int getAmountPaymets() {
+        return 0;
     }
 }

@@ -1,8 +1,10 @@
 package ch.jonasgredig.localexpenses.util;
 
+import java.util.ArrayList;
+
 public class TerminalGuiUtils {
 
-    int menuSize = 134;
+    public int menuSize = 134;
 
     public String setStringLength(String s, int length) {
         while (s.length() < length) {
@@ -15,10 +17,18 @@ public class TerminalGuiUtils {
     }
 
 
-    public void printInfo(String s) {
+    public void printInfo(String message) {
         printSpacerLine();
-        printMenuText(s);
+        printMenuText(message);
         printSpacerLine();
+    }
+
+    public void printInfo(String[] messages) {
+        printSpacerLine();
+        for (String message : messages) {
+            printMenuText(message);
+            printSpacerLine();
+        }
     }
 
     public void printMenuText(String text) {
