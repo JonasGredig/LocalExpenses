@@ -3,12 +3,14 @@ package ch.jonasgredig.localexpenses.view;
 import ch.jonasgredig.localexpenses.controller.IPaymentController;
 import ch.jonasgredig.localexpenses.controller.PaymentController;
 import ch.jonasgredig.localexpenses.controller.mockController.MockPaymentController;
+import ch.jonasgredig.localexpenses.db.DBConnection;
 import ch.jonasgredig.localexpenses.model.Payment;
 import ch.jonasgredig.localexpenses.util.TerminalGuiUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -20,7 +22,6 @@ public class TerminalGui {
 
 
     public TerminalGui() {
-
         reader = new BufferedReader(new InputStreamReader(System.in));
         terminalGuiUtils = new TerminalGuiUtils();
 
