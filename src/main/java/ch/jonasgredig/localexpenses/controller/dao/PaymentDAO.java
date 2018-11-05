@@ -1,5 +1,6 @@
-package ch.jonasgredig.localexpenses.db;
+package ch.jonasgredig.localexpenses.controller.dao;
 
+import ch.jonasgredig.localexpenses.db.DBConnection;
 import ch.jonasgredig.localexpenses.model.Payment;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
