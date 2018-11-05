@@ -39,14 +39,23 @@ public class UserDao implements iUserDao {
             pstmt.execute();
             return true;
         } catch (SQLException e) {
-            System.out.println(e);
             return false;
         }
     }
 
     @Override
     public boolean deleteUser(User user) {
-        return false;
+        String sql = "DELETE user where userid=?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, user.getId());
+
+            pstmt.execute();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
     @Override
