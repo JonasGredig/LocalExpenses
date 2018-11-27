@@ -1,27 +1,35 @@
 buildscript {
-    repositories {
-        mavenCentral()
-    }
+	ext {
+		springBootVersion = '2.1.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-group = 'ch.jonasgredig.localexpenses'
+group = 'net.baumink.expenses'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 8
+sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
-test {
-    useJUnitPlatform()
-}
 
 dependencies {
-    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.3.1'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.3.0'
-    testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.3.1'
+	implementation('org.springframework.boot:spring-boot-starter-actuator')
+	implementation('org.springframework.boot:spring-boot-starter-data-rest')
+	implementation('org.springframework.boot:spring-boot-starter-security')
+	implementation('org.springframework.boot:spring-boot-starter-webflux')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	testImplementation('io.projectreactor:reactor-test')
+	testImplementation('org.springframework.security:spring-security-test')
 }
